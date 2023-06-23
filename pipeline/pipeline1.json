@@ -1,0 +1,75 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Load_Staging",
+				"type": "Custom",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": "cmd /c tbuild_load_test.bat",
+					"resourceLinkedService": {
+						"referenceName": "blobforvantagetest",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "vantageinput",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatch2",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "StagingtoTarget",
+				"type": "Custom",
+				"dependsOn": [
+					{
+						"activity": "Load_Staging",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": "cmd /c bteq_transform.bat",
+					"resourceLinkedService": {
+						"referenceName": "blobforvantagetest",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "vantageinput",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatch2",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-08-10T08:33:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

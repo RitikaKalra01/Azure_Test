@@ -1,0 +1,9 @@
+{
+	"name": "data-factory-rk782",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f411887c-d44b-4f65-8f54-af8c3c13170b",
+		"tenantId": "7998488c-180b-404d-9d7f-b4bd6f46b2df"
+	}
+}
