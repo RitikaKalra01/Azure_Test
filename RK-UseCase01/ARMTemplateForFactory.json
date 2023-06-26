@@ -18,6 +18,10 @@
 		"DataLakeUC1Output_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://datalakerk250076.dfs.core.windows.net/"
+		},
+		"key_vault_ls_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://keyvault-azure.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -57,7 +61,7 @@
 							"sink": {
 								"type": "DelimitedTextSink",
 								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
+									"type": "AzureBlobFSWriteSettings"
 								},
 								"formatSettings": {
 									"type": "DelimitedTextWriteSettings",
@@ -117,7 +121,7 @@
 							"sink": {
 								"type": "DelimitedTextSink",
 								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
+									"type": "AzureBlobFSWriteSettings"
 								},
 								"formatSettings": {
 									"type": "DelimitedTextWriteSettings",
@@ -170,15 +174,15 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "blbuc1source",
+					"referenceName": "DataLakeUC1Output",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "rk250076"
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "rk250076"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -217,7 +221,7 @@
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/blbuc1source')]"
+				"[concat(variables('factoryId'), '/linkedServices/DataLakeUC1Output')]"
 			]
 		},
 		{
@@ -283,15 +287,15 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "blbuc1source",
+					"referenceName": "DataLakeUC1Output",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "rk250076"
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "rk250076"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -330,7 +334,7 @@
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/blbuc1source')]"
+				"[concat(variables('factoryId'), '/linkedServices/DataLakeUC1Output')]"
 			]
 		},
 		{
@@ -416,6 +420,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('blbuc1source_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/key_vault_ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('key_vault_ls_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []

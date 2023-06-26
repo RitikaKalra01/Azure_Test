@@ -14,6 +14,9 @@
 		"DataLakeUC1Output_properties_typeProperties_url": {
 			"value": "https://datalakerk250076.dfs.core.windows.net/"
 		},
+		"key_vault_ls_properties_typeProperties_baseUrl": {
+			"value": "https://keyvault-azure.vault.azure.net/"
+		},
 		"containerUri": {
 			"value": ""
 		},
