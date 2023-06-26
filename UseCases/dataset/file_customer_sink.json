@@ -2,15 +2,15 @@
 	"name": "file_customer_sink",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "blbuc1source",
+			"referenceName": "DataLakeUC1Output",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"container": "rk250076"
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "rk250076"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
