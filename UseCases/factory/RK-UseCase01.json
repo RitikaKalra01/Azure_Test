@@ -1,0 +1,9 @@
+{
+	"name": "RK-UseCase01",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "940bb633-7f63-4f98-99c8-0d67198005fb",
+		"tenantId": "7998488c-180b-404d-9d7f-b4bd6f46b2df"
+	}
+}
