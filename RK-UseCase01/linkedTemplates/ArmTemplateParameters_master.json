@@ -5,11 +5,20 @@
 		"factoryName": {
 			"value": "RK-UseCase01"
 		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
+		"AzureDatabricksDeltaLake1_accessToken": {
+			"value": ""
+		},
 		"DataLakeUC1Output_accountKey": {
 			"value": ""
 		},
 		"blbuc1source_connectionString": {
 			"value": ""
+		},
+		"AKV_RK250076_properties_typeProperties_baseUrl": {
+			"value": "https://keyvault-azure.vault.azure.net/"
 		},
 		"DataLakeUC1Output_properties_typeProperties_url": {
 			"value": "https://datalakerk250076.dfs.core.windows.net/"
