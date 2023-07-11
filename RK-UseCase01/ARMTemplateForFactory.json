@@ -318,15 +318,30 @@
 						]
 					},
 					{
-						"name": "UseCase1",
-						"type": "DatabricksNotebook",
+						"name": "CustomerFileCopy",
+						"type": "SetVariable",
 						"dependsOn": [
 							{
 								"activity": "Customer_FileToDataLake",
 								"dependencyConditions": [
 									"Succeeded"
 								]
-							},
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "CustomerFileCopy",
+							"value": true
+						}
+					},
+					{
+						"name": "SalesFileCopy",
+						"type": "SetVariable",
+						"dependsOn": [
 							{
 								"activity": "Sales_FileToDataLake",
 								"dependencyConditions": [
@@ -335,25 +350,74 @@
 							}
 						],
 						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Shared/UseCase1"
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureDatabricks1",
-							"type": "LinkedServiceReference"
+							"variableName": "SalesFileCopy",
+							"value": true
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "CustomerFileCopy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SalesFileCopy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@and(equals(variables('CustomerFileCopy'),true),equals(variables('SalesFileCopy'),true))",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Notebook1",
+									"type": "DatabricksNotebook",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/rk250076/UseCase01"
+									},
+									"linkedServiceName": {
+										"referenceName": "AzureDatabricks1",
+										"type": "LinkedServiceReference"
+									}
+								}
+							]
 						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"variables": {
+					"CustomerFileCopy": {
+						"type": "Boolean"
+					},
+					"SalesFileCopy": {
+						"type": "Boolean"
+					}
 				},
 				"annotations": []
 			},
