@@ -332,6 +332,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [],
 				"typeProperties": {
 					"variableName": "SalesFileCopy",
 					"value": true
