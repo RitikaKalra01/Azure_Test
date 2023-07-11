@@ -274,13 +274,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Customer_FileToDataLake",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Sales_FileToDataLake",
+						"activity": "If Condition1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -301,8 +295,82 @@
 					"referenceName": "AzureDatabricks1",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "CustomerFileCopy",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Customer_FileToDataLake",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CustomerFileCopy",
+					"value": true
+				}
+			},
+			{
+				"name": "SalesFileCopy",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Sales_FileToDataLake",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"variableName": "SalesFileCopy",
+					"value": true
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "CustomerFileCopy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SalesFileCopy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@and(equals(variables('CustomerFileCopy'),true),equals(variables('SalesFileCopy'),true))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"CustomerFileCopy": {
+				"type": "Boolean"
+			},
+			"SalesFileCopy": {
+				"type": "Boolean"
+			}
+		},
 		"annotations": []
 	}
 }
