@@ -167,49 +167,85 @@
 							{
 								"source": {
 									"name": "OrderID",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": ""
+									"name": "OrderID",
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "CustomerID",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CustomerID"
+									"name": "CustomerID",
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "ProductID",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ProductID",
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantity",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Quantity",
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Price",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Price",
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "OrderDate",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "OrderDate",
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Region",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Region",
+									"type": "String",
+									"physicalType": "String"
 								}
 							}
 						],
