@@ -10,12 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "sales.csv",
 				"fileSystem": "rk250076"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": false,
+			"firstRowAsHeader": true,
 			"quoteChar": null
 		},
 		"schema": [
