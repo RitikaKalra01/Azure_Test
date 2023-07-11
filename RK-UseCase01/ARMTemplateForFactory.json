@@ -84,6 +84,71 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "CustomerID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CustomerID"
+										}
+									},
+									{
+										"source": {
+											"name": "FirstName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FirstName"
+										}
+									},
+									{
+										"source": {
+											"name": "LastName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LastName"
+										}
+									},
+									{
+										"source": {
+											"name": "Email",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Email"
+										}
+									},
+									{
+										"source": {
+											"name": "Address",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Address"
+										}
+									},
+									{
+										"source": {
+											"name": "City",
+											"type": "String"
+										},
+										"sink": {
+											"name": "City"
+										}
+									},
+									{
+										"source": {
+											"name": "Country",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Country"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -144,6 +209,92 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "OrderID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OrderID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CustomerID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CustomerID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ProductID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Quantity",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Quantity",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Price",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Price",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "OrderDate",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OrderDate",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Region",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Region",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -173,7 +324,13 @@
 							{
 								"activity": "Customer_FileToDataLake",
 								"dependencyConditions": [
-									"Completed"
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Sales_FileToDataLake",
+								"dependencyConditions": [
+									"Succeeded"
 								]
 							}
 						],
@@ -344,31 +501,24 @@
 				},
 				"schema": [
 					{
-						"name": "CustomerID",
 						"type": "String"
 					},
 					{
-						"name": "FirstName",
 						"type": "String"
 					},
 					{
-						"name": "LastName",
 						"type": "String"
 					},
 					{
-						"name": "Email",
 						"type": "String"
 					},
 					{
-						"name": "Address",
 						"type": "String"
 					},
 					{
-						"name": "City",
 						"type": "String"
 					},
 					{
-						"name": "Country",
 						"type": "String"
 					}
 				]
